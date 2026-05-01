@@ -7,6 +7,15 @@ export const siteMeta = {
 	description:
 		'Autorizované studie, akreditovaná měření, prodej měřicí techniky, znalecká činnost a školení v oblasti životního prostředí. Působíme pro průmysl, dopravu a veřejný sektor.',
 	url: 'https://naturchem.cz',
+	/** Hero fotografie (Unsplash) — v prohlížeči; lze nahradit vlastním souborem v /public/images/. */
+	heroPhotoUrl:
+		'https://images.unsplash.com/photo-1581092160562-40aa08e66837?auto=format&fit=crop&w=1400&q=82',
+	heroPhotoAlt:
+		'Pracovník v bezpečnostní helmě při práci v průmyslovém prostředí — kontext měření a provozu.',
+	/** Druhý vizuální blok na úvodní stránce. */
+	homeBandPhotoUrl:
+		'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1400&q=82',
+	homeBandPhotoAlt: 'Krajina a obnovitelné zdroje — souvislost ochrany životního prostředí s průmyslem.',
 	email: 'naturchem@naturchem.cz',
 	phones: ['+420 603 216 983', '+420 774 100 570'] as const,
 	ico: '27504379',
@@ -53,6 +62,44 @@ export const team = [
 		note: undefined as string | undefined,
 		phone: '+420 774 100 572',
 	},
+] as const;
+
+/** Krátké štítky pod hero nadpisem. */
+export const heroPills = [
+	'Akreditovaná laboratoř ČIA L 1599',
+	'Autorizace EIA a rozptylové studie',
+	'Znalec a školení pro firmy',
+] as const;
+
+export type UspIcon = 'badge' | 'layers' | 'mapPin' | 'clock';
+
+export const homeUsps: { icon: UspIcon; title: string; text: string }[] = [
+	{
+		icon: 'badge',
+		title: 'Ověřitelná kredibilita',
+		text: 'Akreditace, autorizace a dokumenty ke stažení — bez „skrytých“ kompetencí.',
+	},
+	{
+		icon: 'layers',
+		title: 'Celý cyklus z jedné ruky',
+		text: 'Od měření a laboratoře přes studie až po znalecké posudky a školení pro váš provoz.',
+	},
+	{
+		icon: 'mapPin',
+		title: 'Geografie, která dává smysl',
+		text: 'Sídlo Havlíčkův Brod a provozy v Českých Budějovicích a Praze — ČR pokrytá prakticky.',
+	},
+	{
+		icon: 'clock',
+		title: 'Domluva podle reality úřadu',
+		text: 'Umíme nastavit priority tak, aby termíny seděly s řízením, měřicími okny i výrobou.',
+	},
+];
+
+export const homeBandBullets = [
+	'Studie a měření jako podklad pro ČIŽP, KHS nebo správní řízení.',
+	'Transparentní rozsah zakázky — dopředu víte, co přesně dodáme a v jakém formátu.',
+	'Partnerský přístup k průmyslovým provozům: automotive, energetika, doprava, stavby.',
 ] as const;
 
 export type ServiceSlug =

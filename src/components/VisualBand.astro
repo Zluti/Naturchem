@@ -1,0 +1,158 @@
+---
+import IconSymbol from './IconSymbol.astro';
+
+interface Props {
+	title: string;
+	lead?: string;
+	imageUrl: string;
+	imageAlt: string;
+	bullets: readonly string[];
+	/** CC0 / Unsplash — krátká informace pod fotkou */
+	photoCredit?: string;
+}
+
+const { title, lead, imageUrl, imageAlt, bullets, photoCredit } = Astro.props;
+---
+
+<section class="visual-band section" aria-labelledby="visual-band-heading">
+	<div class="container visual-band__inner">
+		<div class="visual-band__media">
+			<div class="visual-band__frame">
+				<img
+					class="visual-band__img"
+					src={imageUrl}
+					alt={imageAlt}
+					width="1400"
+					height="933"
+					loading="lazy"
+					decoding="async"
+				/>
+				<img
+					class="visual-band__pattern"
+					src="/images/hero-pattern.svg"
+					alt=""
+					width="900"
+					height="700"
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+			{photoCredit && <p class="visual-band__credit">{photoCredit}</p>}
+		</div>
+		<div class="visual-band__copy">
+			<h2 id="visual-band-heading" class="visual-band__title">{title}</h2>
+			{lead && <p class="visual-band__lead">{lead}</p>}
+			<ul class="visual-band__list">
+				{
+					bullets.map((b) => (
+						<li class="visual-band__item">
+							<IconSymbol name="check" class="visual-band__check" size={22} />
+							<span>{b}</span>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	.visual-band {
+		background: linear-gradient(180deg, #eef6f1 0%, var(--color-bg) 100%);
+		border-block: 1px solid var(--color-border);
+	}
+
+	.visual-band__inner {
+		display: grid;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+		gap: clamp(1.5rem, 4vw, 2.75rem);
+		align-items: center;
+	}
+
+	@media (max-width: 880px) {
+		.visual-band__inner {
+			grid-template-columns: 1fr;
+		}
+
+		.visual-band__media {
+			order: -1;
+		}
+	}
+
+	.visual-band__frame {
+		position: relative;
+		border-radius: calc(var(--radius) + 8px);
+		overflow: hidden;
+		box-shadow: 0 20px 50px rgba(27, 67, 50, 0.18);
+		border: 1px solid rgba(45, 106, 79, 0.18);
+		background: var(--color-surface);
+	}
+
+	.visual-band__img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+	}
+
+	.visual-band__pattern {
+		position: absolute;
+		right: -12%;
+		bottom: -18%;
+		width: min(52%, 380px);
+		height: auto;
+		opacity: 0.92;
+		pointer-events: none;
+		filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.08));
+	}
+
+	.visual-band__credit {
+		margin: 0.55rem 0 0;
+		font-size: 0.78rem;
+		color: var(--color-muted);
+	}
+
+	.visual-band__title {
+		margin: 0 0 0.65rem;
+		font-size: clamp(1.65rem, 2.8vw, 2.1rem);
+		line-height: 1.18;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	.visual-band__lead {
+		margin: 0 0 1.25rem;
+		font-size: 1.05rem;
+		color: var(--color-muted);
+		line-height: 1.55;
+		max-width: 48ch;
+	}
+
+	.visual-band__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+	}
+
+	.visual-band__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.65rem;
+		font-weight: 600;
+		line-height: 1.45;
+		padding: 0.85rem 1rem;
+		background: var(--color-surface);
+		border-radius: var(--radius);
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow);
+	}
+
+	.visual-band__check {
+		margin-top: 0.15rem;
+		color: var(--color-accent);
+	}
+</style>

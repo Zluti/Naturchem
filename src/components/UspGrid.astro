@@ -1,0 +1,77 @@
+---
+import IconSymbol from './IconSymbol.astro';
+import type { UspIcon } from '../data/site';
+
+interface Props {
+	items: readonly { icon: UspIcon; title: string; text: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="usp-grid">
+	{
+		items.map((item) => (
+			<li class="usp-card surface-card">
+				<div class="usp-card__icon-wrap" aria-hidden="true">
+					<IconSymbol name={item.icon} size={26} />
+				</div>
+				<h3 class="usp-card__title">{item.title}</h3>
+				<p class="usp-card__text">{item.text}</p>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.usp-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1rem;
+	}
+
+	.usp-card {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1.35rem 1.4rem 1.45rem;
+		border-top: 3px solid var(--color-accent-soft);
+		transition: box-shadow 0.15s ease, transform 0.15s ease;
+	}
+
+	.usp-card:hover {
+		box-shadow: 0 14px 32px rgba(27, 67, 50, 0.12);
+		transform: translateY(-2px);
+	}
+
+	.usp-card__icon-wrap {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 12px;
+		background: linear-gradient(145deg, var(--color-accent-soft), #fff);
+		border: 1px solid var(--color-border);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 0.15rem;
+	}
+
+	.usp-card__title {
+		margin: 0;
+		font-size: 1.08rem;
+		line-height: 1.25;
+		font-weight: 800;
+		letter-spacing: -0.01em;
+	}
+
+	.usp-card__text {
+		margin: 0;
+		font-size: 0.96rem;
+		color: var(--color-muted);
+		line-height: 1.55;
+	}
+</style>

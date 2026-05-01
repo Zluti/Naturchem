@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceIcon from '../../components/ServiceIcon.astro';
-import { servicesNav, siteMeta, type ServiceSlug } from '../../content/site';
-import { serviceDetails } from '../../content/services-detail';
+import { servicesNav, siteMeta, type ServiceSlug } from '../../data/site';
+import { serviceDetails } from '../../data/services-detail';
 
 export function getStaticPaths() {
 	return servicesNav.map((s) => ({ params: { slug: s.slug } }));

@@ -2,14 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceIcon from '../components/ServiceIcon.astro';
+import UspGrid from '../components/UspGrid.astro';
+import VisualBand from '../components/VisualBand.astro';
+import IconSymbol from '../components/IconSymbol.astro';
 import {
 	siteMeta,
 	servicesNav,
 	accreditationList,
 	furtherServices,
 	referenceHighlight,
+	heroPills,
+	homeUsps,
+	homeBandBullets,
 	type ServiceSlug,
-} from '../content/site';
+} from '../data/site';
 
 const iconForSlug = (slug: ServiceSlug) => {
 	const map = {
@@ -31,54 +37,75 @@ const iconForSlug = (slug: ServiceSlug) => {
 	<Hero
 		title="Měření, studie a dokumentace pro úřady i váš provoz"
 		subtitle={siteMeta.description}
+		pills={heroPills}
 	/>
 
-	<section class="section container" aria-labelledby="trust-heading">
-		<h2 id="trust-heading" class="section-title">Proč nám klienti věří</h2>
+	<section class="section container" aria-labelledby="usp-heading">
+		<h2 id="usp-heading" class="section-title">Proč s námi řešit ŽP</h2>
 		<p class="section-lead">
-			Akreditovaná laboratoř ČIA č. L 1599, autorizované osoby a dlouhodobá práce pro
-			průmyslové i veřejné zakázky — transparentně s dokumenty ke stažení.
+			Čísla na papíře i v terénu — akreditovaná měření, autorizované studie a lidé, kteří rozumějí
+			skladové výrobě i řízení u úřadu.
 		</p>
-		<ul class="trust-strip">
-			<li class="surface-card trust-strip__item">Akreditovaná laboratoř ČIA L 1599</li>
-			<li class="surface-card trust-strip__item">Autorizace EIA a rozptylových studií</li>
-			<li class="surface-card trust-strip__item">Soudní znalecká činnost</li>
-			<li class="surface-card trust-strip__item">Provozy HB, České Budějovice, Praha</li>
-		</ul>
+		<UspGrid items={homeUsps} />
 	</section>
 
-	<section class="section container" aria-labelledby="services-heading">
-		<h2 id="services-heading" class="section-title">Služby podle vaší potřeby</h2>
-		<p class="section-lead">
-			Vyberte oblast — každá má vlastní stránku s podrobnostmi a výzvou ke kontaktu.
-		</p>
-		<div class="grid-cards">
-			{
-				servicesNav.map((s) => (
-					<a class="service-card surface-card" href={`/sluzby/${s.slug}`}>
-						<div class="service-card__top">
-							<ServiceIcon name={iconForSlug(s.slug)} />
-							<h3 class="service-card__title">{s.title}</h3>
-						</div>
-						<p class="service-card__summary">{s.summary}</p>
-						<span class="service-card__more">Podrobnosti →</span>
-					</a>
-				))
-			}
+	<section class="section section--soft" aria-labelledby="services-heading">
+		<div class="container">
+			<h2 id="services-heading" class="section-title">Služby podle vaší potřeby</h2>
+			<p class="section-lead">
+				Vyberte oblast — každá má vlastní stránku s podrobnostmi a výzvou ke kontaktu.
+			</p>
+			<div class="grid-cards">
+				{
+					servicesNav.map((s) => (
+						<a class="service-card surface-card" href={`/sluzby/${s.slug}`}>
+							<div class="service-card__top">
+								<ServiceIcon name={iconForSlug(s.slug)} />
+								<h3 class="service-card__title">{s.title}</h3>
+							</div>
+							<p class="service-card__summary">{s.summary}</p>
+							<span class="service-card__more">Podrobnosti →</span>
+						</a>
+					))
+				}
+			</div>
 		</div>
 	</section>
+
+	<VisualBand
+		title="Jeden partner pro podklady k řízení i provoz"
+		lead="Umíme propojit měření v terénu, laboratoř a dokumenty tak, aby vedení i úřad dostaly konzistentní příběh."
+		imageUrl={siteMeta.homeBandPhotoUrl}
+		imageAlt={siteMeta.homeBandPhotoAlt}
+		bullets={homeBandBullets}
+		photoCredit="Ilustrační foto — ideálně vlastní dokumentace z realizovaných zakázek."
+	/>
 
 	<section class="section container section--columns" aria-labelledby="more-heading">
 		<div>
 			<h2 id="more-heading" class="section-title">Akreditované činnosti</h2>
-			<ul class="check-list">
-				{accreditationList.map((item) => <li>{item}</li>)}
+			<ul class="icon-check-list">
+				{
+					accreditationList.map((item) => (
+						<li>
+							<IconSymbol name="check" size={20} class="icon-check-list__ico" />
+							<span>{item}</span>
+						</li>
+					))
+				}
 			</ul>
 		</div>
 		<div>
 			<h2 class="section-title">Dále provádíme</h2>
-			<ul class="check-list">
-				{furtherServices.map((item) => <li>{item}</li>)}
+			<ul class="icon-check-list">
+				{
+					furtherServices.map((item) => (
+						<li>
+							<IconSymbol name="check" size={20} class="icon-check-list__ico" />
+							<span>{item}</span>
+						</li>
+					))
+				}
 			</ul>
 		</div>
 	</section>
@@ -111,19 +138,37 @@ const iconForSlug = (slug: ServiceSlug) => {
 </BaseLayout>
 
 <style>
-	.trust-strip {
+	.section--soft {
+		background: linear-gradient(180deg, rgba(216, 243, 220, 0.4) 0%, transparent 100%);
+		border-block: 1px solid rgba(45, 106, 79, 0.08);
+		padding-block: clamp(2.75rem, 6vw, 4rem);
+	}
+
+	.icon-check-list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-		gap: 0.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
 	}
 
-	.trust-strip__item {
-		font-weight: 600;
-		font-size: 0.95rem;
-		margin: 0;
+	.icon-check-list li {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.55rem;
+		color: var(--color-muted);
+		line-height: 1.55;
+		font-size: 1.02rem;
+		padding: 0.65rem 0.75rem;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 10px;
+		box-shadow: 0 4px 14px rgba(27, 67, 50, 0.04);
+	}
+
+	.icon-check-list__ico {
+		margin-top: 0.2rem;
 	}
 
 	.service-card {
@@ -134,6 +179,7 @@ const iconForSlug = (slug: ServiceSlug) => {
 		color: inherit;
 		transition: transform 0.12s ease, box-shadow 0.12s ease;
 		height: 100%;
+		border-left: 4px solid var(--color-accent);
 	}
 
 	.service-card:hover {
@@ -171,17 +217,6 @@ const iconForSlug = (slug: ServiceSlug) => {
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 2rem;
 		align-items: start;
-	}
-
-	.check-list {
-		margin: 0;
-		padding-left: 1.15rem;
-		color: var(--color-muted);
-		line-height: 1.55;
-	}
-
-	.check-list li + li {
-		margin-top: 0.4rem;
 	}
 
 	.refs-highlight {

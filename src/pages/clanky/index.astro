@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { siteMeta } from '../../data/site';
+
+const dateFmt = new Intl.DateTimeFormat('cs-CZ', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+
+const posts = (await getCollection('clanky', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = `Články a novinky · ${siteMeta.shortName}`;
+const description =
+	'Články o měřeních, studiích, hluku, legislativě a školeních pro provozovatele — průběžně doplňovaný obsah od Naturchem.';
+---
+
+<BaseLayout {title} {description} canonicalPath="/clanky">
+	<section class="section container clanky-page">
+		<h1 class="page-title">Články a novinky</h1>
+		<p class="page-lead">
+			Krátké texty z praxe — jak připravit měření, kdy řešit hlukovou studii nebo co přináší školení
+			pro váš provoz. Postupně přidáváme další témata podle aktuálních dotazů klientů.
+		</p>
+
+		{
+			posts.length === 0 ? (
+				<p class="empty">Zatím zde nejsou žádné publikované články.</p>
+			) : (
+				<ul class="post-grid">
+					{posts.map((post) => (
+						<li>
+							<a class="post-card surface-card" href={`/clanky/${post.id}`}>
+								<time class="post-card__date" datetime={post.data.pubDate.toISOString()}>
+									{dateFmt.format(post.data.pubDate)}
+								</time>
+								<h2 class="post-card__title">{post.data.title}</h2>
+								<p class="post-card__desc">{post.data.description}</p>
+								{post.data.tags.length > 0 && (
+									<ul class="post-card__tags">
+										{post.data.tags.map((t) => (
+											<li>{t}</li>
+										))}
+									</ul>
+								)}
+								<span class="post-card__more">Číst článek →</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			)
+		}
+
+		<p class="clanky-footer surface-card">
+			<strong>Přidat vlastní téma?</strong> Pokud byste chtěli článek na konkrétní problém z vaší výroby,
+			<a href="/kontakt">ozvěte se</a>
+			— rádi navrhneme obsah i formu (technický výklad, checklist, případové shrnutí).
+		</p>
+	</section>
+</BaseLayout>
+
+<style>
+	.clanky-page {
+		padding-bottom: clamp(3rem, 8vw, 5rem);
+	}
+
+	.page-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.page-lead {
+		max-width: 62ch;
+		color: var(--color-muted);
+		font-size: 1.08rem;
+		margin: 0 0 2.25rem;
+		line-height: 1.55;
+	}
+
+	.empty {
+		color: var(--color-muted);
+		margin: 0;
+	}
+
+	.post-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1rem;
+	}
+
+	.post-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		height: 100%;
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.12s ease, box-shadow 0.12s ease;
+		border-top: 3px solid var(--color-accent-soft);
+	}
+
+	.post-card:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 14px 34px rgba(27, 67, 50, 0.12);
+	}
+
+	.post-card__date {
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: var(--color-accent);
+		text-transform: capitalize;
+	}
+
+	.post-card__title {
+		margin: 0;
+		font-size: 1.18rem;
+		line-height: 1.28;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	.post-card__desc {
+		margin: 0;
+		flex: 1;
+		font-size: 0.98rem;
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
+
+	.post-card__tags {
+		list-style: none;
+		margin: 0.35rem 0 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+
+	.post-card__tags li {
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		padding: 0.22rem 0.45rem;
+		border-radius: 6px;
+		background: var(--color-accent-soft);
+		color: var(--color-accent-hover);
+	}
+
+	.post-card__more {
+		font-weight: 700;
+		font-size: 0.92rem;
+		color: var(--color-accent);
+		margin-top: 0.35rem;
+	}
+
+	.clanky-footer {
+		margin-top: 2.5rem;
+		font-size: 0.98rem;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.clanky-footer strong {
+		color: var(--color-text);
+	}
+</style>

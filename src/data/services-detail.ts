@@ -16,7 +16,7 @@ export const serviceDetails: Record<ServiceSlug, ServiceDetail> = {
 			'Oznámení záměru a dokumentace EIA',
 			'Integrovaná povolení provozu (podklady a konzultace)',
 			'Ověřování emisí skleníkových plynů',
-			'Hlášení ISPOP a souvisejší ekologické služby',
+			'Hlášení ISPOP a související ekologické služby',
 		],
 	},
 	mereni: {

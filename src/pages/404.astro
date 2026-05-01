@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { siteMeta } from '../content/site';
+import { siteMeta } from '../data/site';
 
 const title = `Stránka nenalezena · ${siteMeta.shortName}`;
 ---
@@ -19,6 +19,7 @@ const title = `Stránka nenalezena · ${siteMeta.shortName}`;
 		<div class="notfound__actions">
 			<a class="btn btn--primary" href="/">Úvod</a>
 			<a class="btn btn--ghost" href="/sluzby">Služby</a>
+			<a class="btn btn--ghost" href="/clanky">Články</a>
 			<a class="btn btn--ghost" href="/kontakt">Kontakt</a>
 		</div>
 	</section>

@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { siteMeta } from '../../data/site';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('clanky', ({ data }) => !data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFmt = new Intl.DateTimeFormat('cs-CZ', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+
+const pub = post.data.pubDate;
+const pubFormatted = dateFmt.format(pub);
+const updated = post.data.updatedDate;
+const canonicalPath = `/clanky/${post.id}`;
+
+const title = `${post.data.title} · Články · ${siteMeta.shortName}`;
+const description = post.data.description;
+---
+
+<BaseLayout {title} {description} canonicalPath={canonicalPath}>
+	<article class="section container article-page">
+		<nav class="breadcrumb" aria-label="Drobečková navigace">
+			<a href="/">Úvod</a>
+			<span class="breadcrumb__sep" aria-hidden="true">/</span>
+			<a href="/clanky">Články</a>
+			<span class="breadcrumb__sep" aria-hidden="true">/</span>
+			<span class="breadcrumb__current">{post.data.title}</span>
+		</nav>
+
+		<header class="article-head">
+			<h1 class="article-head__title">{post.data.title}</h1>
+			<p class="article-head__meta">
+				<time datetime={pub.toISOString()}>Publikováno {pubFormatted}</time>
+				{
+					updated && (
+						<>
+							{' '}
+							· upraveno {dateFmt.format(updated)}
+						</>
+					)
+				}
+			</p>
+			{
+				post.data.tags.length > 0 && (
+					<ul class="article-head__tags">
+						{post.data.tags.map((t) => (
+							<li>{t}</li>
+						))}
+					</ul>
+				)
+			}
+		</header>
+
+		<div class="article-prose">
+			<Content />
+		</div>
+
+		<footer class="article-end surface-card">
+			<p class="article-end__text">
+				Máte dotaz k tématu článku nebo potřebujete konkrétní nabídku?
+				<a href="/kontakt">Napište nám</a>
+				nebo zavolejte na{' '}
+				<a href={`tel:${siteMeta.phones[0].replace(/\s/g, '')}`}>{siteMeta.phones[0]}</a>.
+			</p>
+			<p class="article-end__back">
+				<a href="/clanky">← Zpět na přehled článků</a>
+			</p>
+		</footer>
+	</article>
+</BaseLayout>
+
+<style>
+	.breadcrumb {
+		font-size: 0.92rem;
+		color: var(--color-muted);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		align-items: center;
+		margin-bottom: 1.5rem;
+	}
+
+	.breadcrumb a {
+		font-weight: 600;
+	}
+
+	.breadcrumb__current {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.breadcrumb__sep {
+		opacity: 0.5;
+	}
+
+	.article-head__title {
+		font-size: clamp(1.85rem, 3.5vw, 2.45rem);
+		line-height: 1.15;
+		font-weight: 800;
+		margin: 0 0 0.65rem;
+		letter-spacing: -0.025em;
+		max-width: 40rem;
+	}
+
+	.article-head__meta {
+		margin: 0 0 1rem;
+		font-size: 0.95rem;
+		color: var(--color-muted);
+	}
+
+	.article-head__tags {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.article-head__tags li {
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.28rem 0.55rem;
+		border-radius: 999px;
+		background: var(--color-accent-soft);
+		color: var(--color-accent-hover);
+	}
+
+	.article-prose {
+		max-width: 65ch;
+		font-size: 1.0625rem;
+		line-height: 1.7;
+		color: var(--color-text);
+		margin-bottom: 2.5rem;
+	}
+
+	.article-prose :global(h2) {
+		font-size: 1.35rem;
+		font-weight: 800;
+		margin: 2rem 0 0.75rem;
+		line-height: 1.25;
+		letter-spacing: -0.02em;
+	}
+
+	.article-prose :global(h2:first-child) {
+		margin-top: 1.25rem;
+	}
+
+	.article-prose :global(h3) {
+		font-size: 1.12rem;
+		font-weight: 700;
+		margin: 1.35rem 0 0.5rem;
+	}
+
+	.article-prose :global(p) {
+		margin: 0 0 1rem;
+	}
+
+	.article-prose :global(ul),
+	.article-prose :global(ol) {
+		margin: 0 0 1rem;
+		padding-left: 1.35rem;
+		color: var(--color-muted);
+	}
+
+	.article-prose :global(li + li) {
+		margin-top: 0.35rem;
+	}
+
+	.article-prose :global(a) {
+		font-weight: 600;
+	}
+
+	.article-prose :global(blockquote) {
+		margin: 1.25rem 0;
+		padding: 0.85rem 1rem 0.85rem 1.1rem;
+		border-left: 4px solid var(--color-accent);
+		background: rgba(216, 243, 220, 0.35);
+		border-radius: 0 var(--radius) var(--radius) 0;
+		font-style: normal;
+		color: var(--color-muted);
+	}
+
+	.article-prose :global(hr) {
+		border: none;
+		border-top: 1px solid var(--color-border);
+		margin: 2rem 0;
+	}
+
+	.article-end {
+		max-width: 65ch;
+		padding: 1.25rem 1.35rem;
+	}
+
+	.article-end__text {
+		margin: 0 0 0.85rem;
+		font-size: 1rem;
+		line-height: 1.55;
+		color: var(--color-muted);
+	}
+
+	.article-end__back {
+		margin: 0;
+		font-weight: 600;
+		font-size: 0.95rem;
+	}
+</style>

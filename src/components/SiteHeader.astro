@@ -1,5 +1,5 @@
 ---
-import { siteMeta, servicesNav } from '../content/site';
+import { siteMeta, servicesNav } from '../data/site';
 
 const navServices = servicesNav.map((s) => ({
 	href: `/sluzby/${s.slug}`,
@@ -9,6 +9,7 @@ const navServices = servicesNav.map((s) => ({
 const navMain = [
 	{ href: '/', label: 'Úvod' },
 	{ href: '/sluzby', label: 'Služby' },
+	{ href: '/clanky', label: 'Články' },
 	{ href: '/reference', label: 'Reference' },
 	{ href: '/dokumenty', label: 'Dokumenty' },
 	{ href: '/kontakt', label: 'Kontakt' },

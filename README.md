@@ -16,6 +16,14 @@ npm run build
 npm run preview
 ```
 
+### Články (blog)
+
+- Markdown soubory v [`src/content/clanky/`](src/content/clanky/) — přidejte nový `.md` soubor (název souboru určuje URL `/clanky/nazev-souboru/`).
+- V horní části souboru je **frontmatter**: `title`, `description`, `pubDate`, volitelně `tags`, `updatedDate`, `draft: true` (rozpracované se na web nevygenerují).
+- Schéma kolekce je v [`src/content.config.ts`](src/content.config.ts).
+
+Firemní údaje a statické texty webu jsou v [`src/data/site.ts`](src/data/site.ts) (odděleně od Markdown kolekcí).
+
 ## Nasazení
 
 Složka `dist/` je kompletní statický web (HTML, CSS, `sitemap-index.xml`, `robots.txt`).
