@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
+import {
+	siteMeta,
+	servicesNav,
+	accreditationList,
+	furtherServices,
+	referenceHighlight,
+	type ServiceSlug,
+} from '../content/site';
+
+const iconForSlug = (slug: ServiceSlug) => {
+	const map = {
+		studie: 'studie',
+		mereni: 'mereni',
+		'prodej-servis': 'prodej',
+		znalecka: 'znalecka',
+		skoleni: 'skoleni',
+	} as const;
+	return map[slug];
+};
+---
+
+<BaseLayout
+	title={`${siteMeta.name} · ${siteMeta.titleSuffix}`}
+	description={siteMeta.description}
+	canonicalPath="/"
+>
+	<Hero
+		title="Měření, studie a dokumentace pro úřady i váš provoz"
+		subtitle={siteMeta.description}
+	/>
+
+	<section class="section container" aria-labelledby="trust-heading">
+		<h2 id="trust-heading" class="section-title">Proč nám klienti věří</h2>
+		<p class="section-lead">
+			Akreditovaná laboratoř ČIA č. L 1599, autorizované osoby a dlouhodobá práce pro
+			průmyslové i veřejné zakázky — transparentně s dokumenty ke stažení.
+		</p>
+		<ul class="trust-strip">
+			<li class="surface-card trust-strip__item">Akreditovaná laboratoř ČIA L 1599</li>
+			<li class="surface-card trust-strip__item">Autorizace EIA a rozptylových studií</li>
+			<li class="surface-card trust-strip__item">Soudní znalecká činnost</li>
+			<li class="surface-card trust-strip__item">Provozy HB, České Budějovice, Praha</li>
+		</ul>
+	</section>
+
+	<section class="section container" aria-labelledby="services-heading">
+		<h2 id="services-heading" class="section-title">Služby podle vaší potřeby</h2>
+		<p class="section-lead">
+			Vyberte oblast — každá má vlastní stránku s podrobnostmi a výzvou ke kontaktu.
+		</p>
+		<div class="grid-cards">
+			{
+				servicesNav.map((s) => (
+					<a class="service-card surface-card" href={`/sluzby/${s.slug}`}>
+						<div class="service-card__top">
+							<ServiceIcon name={iconForSlug(s.slug)} />
+							<h3 class="service-card__title">{s.title}</h3>
+						</div>
+						<p class="service-card__summary">{s.summary}</p>
+						<span class="service-card__more">Podrobnosti →</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section container section--columns" aria-labelledby="more-heading">
+		<div>
+			<h2 id="more-heading" class="section-title">Akreditované činnosti</h2>
+			<ul class="check-list">
+				{accreditationList.map((item) => <li>{item}</li>)}
+			</ul>
+		</div>
+		<div>
+			<h2 class="section-title">Dále provádíme</h2>
+			<ul class="check-list">
+				{furtherServices.map((item) => <li>{item}</li>)}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section container" aria-labelledby="refs-heading">
+		<h2 id="refs-heading" class="section-title">Reference</h2>
+		<p class="section-lead">
+			Spolupráce s významnými podniky v energetice, automotive, stavebnictví a infrastruktuře.
+		</p>
+		<ul class="refs-highlight">
+			{referenceHighlight.map((name) => <li class="surface-card refs-highlight__item">{name}</li>)}
+		</ul>
+		<p class="refs-cta">
+			<a class="btn btn--ghost" href="/reference">Kompletní seznam a příklady spolupráce</a>
+		</p>
+	</section>
+
+	<section class="section cta-banner" aria-labelledby="cta-heading">
+		<div class="container cta-banner__inner">
+			<h2 id="cta-heading" class="cta-banner__title">Potřebujete termín měření nebo podklad pro úřad?</h2>
+			<p class="cta-banner__text">
+				Napište stručný popis zdroje nebo projektu — ozveme se s dalšími kroky.
+			</p>
+			<div class="cta-banner__actions">
+				<a class="btn btn--primary" href="/kontakt">Kontakt a poptávka</a>
+				<a class="btn btn--ghost cta-banner__ghost" href="/dokumenty">Ověření akreditací</a>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.trust-strip {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 0.75rem;
+	}
+
+	.trust-strip__item {
+		font-weight: 600;
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	.service-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.12s ease, box-shadow 0.12s ease;
+		height: 100%;
+	}
+
+	.service-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 12px 28px rgba(27, 67, 50, 0.12);
+	}
+
+	.service-card__top {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.service-card__title {
+		margin: 0;
+		font-size: 1.15rem;
+		line-height: 1.25;
+	}
+
+	.service-card__summary {
+		margin: 0;
+		font-size: 0.98rem;
+		color: var(--color-muted);
+		flex: 1;
+	}
+
+	.service-card__more {
+		font-weight: 700;
+		color: var(--color-accent);
+		font-size: 0.95rem;
+	}
+
+	.section--columns {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 2rem;
+		align-items: start;
+	}
+
+	.check-list {
+		margin: 0;
+		padding-left: 1.15rem;
+		color: var(--color-muted);
+		line-height: 1.55;
+	}
+
+	.check-list li + li {
+		margin-top: 0.4rem;
+	}
+
+	.refs-highlight {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 0.65rem;
+	}
+
+	.refs-highlight__item {
+		font-weight: 600;
+		text-align: center;
+		padding: 0.85rem;
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	.refs-cta {
+		margin: 1.5rem 0 0;
+	}
+
+	.cta-banner {
+		background: var(--color-accent);
+		color: #fff;
+		padding-block: clamp(2.5rem, 5vw, 3.25rem);
+	}
+
+	.cta-banner__inner {
+		max-width: 640px;
+	}
+
+	.cta-banner__title {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.5rem, 3vw, 1.85rem);
+		line-height: 1.2;
+	}
+
+	.cta-banner__text {
+		margin: 0 0 1.25rem;
+		font-size: 1.05rem;
+		opacity: 0.95;
+		line-height: 1.55;
+	}
+
+	.cta-banner__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+
+	.cta-banner .btn--primary {
+		background: #fff;
+		color: var(--color-accent-hover);
+	}
+
+	.cta-banner .btn--primary:hover {
+		background: var(--color-accent-soft);
+		color: var(--color-accent-hover);
+	}
+
+	.cta-banner__ghost {
+		border-color: #fff;
+		color: #fff;
+	}
+
+	.cta-banner__ghost:hover {
+		background: rgba(255, 255, 255, 0.12);
+		color: #fff;
+		border-color: #fff;
+	}
+</style>

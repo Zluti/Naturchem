@@ -1,0 +1,2 @@
+# Netlify: přesměrování ze starého PHP kontaktu na novou adresu
+/kontakt.php /kontakt 301

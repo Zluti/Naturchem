@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceIcon from '../../components/ServiceIcon.astro';
+import { siteMeta, servicesNav, type ServiceSlug } from '../../content/site';
+
+const iconForSlug = (slug: ServiceSlug) => {
+	const map = {
+		studie: 'studie',
+		mereni: 'mereni',
+		'prodej-servis': 'prodej',
+		znalecka: 'znalecka',
+		skoleni: 'skoleni',
+	} as const;
+	return map[slug];
+};
+
+const title = `Služby · ${siteMeta.shortName}`;
+const description =
+	'Přehled služeb Naturchem: autorizované studie, akreditovaná měření, prodej techniky, znalecká činnost a školení.';
+---
+
+<BaseLayout {title} {description} canonicalPath="/sluzby">
+	<section class="section container">
+		<h1 class="page-title">Služby</h1>
+		<p class="page-lead">
+			Vyberte oblast — rádi upřesníme rozsah, legislativní rámec a termín na základě vašeho
+			záměru nebo provozu.
+		</p>
+		<div class="grid-cards">
+			{
+				servicesNav.map((s) => (
+					<a class="service-card surface-card" href={`/sluzby/${s.slug}`}>
+						<div class="service-card__top">
+							<ServiceIcon name={iconForSlug(s.slug)} />
+							<h2 class="service-card__title">{s.title}</h2>
+						</div>
+						<p class="service-card__summary">{s.summary}</p>
+						<span class="service-card__more">Více informací →</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.page-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.page-lead {
+		max-width: 58ch;
+		color: var(--color-muted);
+		font-size: 1.1rem;
+		margin: 0 0 2rem;
+		line-height: 1.55;
+	}
+
+	.service-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.12s ease, box-shadow 0.12s ease;
+		height: 100%;
+	}
+
+	.service-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 12px 28px rgba(27, 67, 50, 0.12);
+	}
+
+	.service-card__top {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.service-card__title {
+		margin: 0;
+		font-size: 1.2rem;
+		line-height: 1.25;
+	}
+
+	.service-card__summary {
+		margin: 0;
+		font-size: 0.98rem;
+		color: var(--color-muted);
+		flex: 1;
+	}
+
+	.service-card__more {
+		font-weight: 700;
+		color: var(--color-accent);
+		font-size: 0.95rem;
+	}
+</style>

@@ -1,0 +1,132 @@
+---
+import { siteMeta, offices } from '../content/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container site-footer__grid section--tight">
+		<div>
+			<p class="site-footer__brand">{siteMeta.name}</p>
+			<p class="site-footer__muted">
+				IČ: {siteMeta.ico} · DIČ: {siteMeta.dic}
+			</p>
+			<p class="site-footer__muted">{siteMeta.orRejstrik}</p>
+		</div>
+		<div>
+			<p class="site-footer__heading">Provozy</p>
+			<ul class="site-footer__list">
+				{
+					offices.map((o) => (
+						<li>
+							<strong>{o.label}</strong><br />
+							{o.street}, {o.cityZip}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div>
+			<p class="site-footer__heading">Rychlý kontakt</p>
+			<p>
+				<a href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a>
+			</p>
+			<ul class="site-footer__phones">
+				{
+					siteMeta.phones.map((p) => (
+						<li>
+							<a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a>
+						</li>
+					))
+				}
+			</ul>
+			<p class="site-footer__muted">
+				<a href="/kontakt">Kontaktní stránka</a>
+				{' · '}
+				<a href="/dokumenty">Akreditace a dokumenty</a>
+			</p>
+		</div>
+	</div>
+	<div class="site-footer__bottom">
+		<div class="container">
+			<p class="site-footer__copy">© {year} {siteMeta.name}</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		background: var(--color-accent-hover);
+		color: #e8f5e9;
+		margin-top: 3rem;
+	}
+
+	.site-footer a {
+		color: #fff;
+		text-decoration-thickness: 1px;
+	}
+
+	.site-footer a:hover {
+		color: var(--color-accent-soft);
+	}
+
+	.site-footer__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 2rem;
+		padding-block: 2.5rem;
+	}
+
+	.site-footer__brand {
+		font-weight: 700;
+		font-size: 1.1rem;
+		margin: 0 0 0.5rem;
+	}
+
+	.site-footer__muted {
+		color: rgba(232, 245, 233, 0.85);
+		font-size: 0.92rem;
+		margin: 0.35rem 0 0;
+		line-height: 1.5;
+	}
+
+	.site-footer__heading {
+		font-weight: 700;
+		margin: 0 0 0.75rem;
+		font-size: 1rem;
+	}
+
+	.site-footer__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: 0.95rem;
+		line-height: 1.55;
+	}
+
+	.site-footer__list li + li {
+		margin-top: 1rem;
+	}
+
+	.site-footer__phones {
+		list-style: none;
+		margin: 0.5rem 0 0;
+		padding: 0;
+	}
+
+	.site-footer__phones li + li {
+		margin-top: 0.25rem;
+	}
+
+	.site-footer__bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.15);
+		padding-block: 1rem;
+	}
+
+	.site-footer__copy {
+		margin: 0;
+		font-size: 0.82rem;
+		color: rgba(232, 245, 233, 0.75);
+		line-height: 1.45;
+	}
+</style>

@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { siteMeta } from '../content/site';
+
+interface Props {
+	title: string;
+	description?: string;
+	canonicalPath: string;
+	noindex?: boolean;
+}
+
+const {
+	title,
+	description = siteMeta.description,
+	canonicalPath,
+	noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(canonicalPath, siteMeta.url).href;
+const fullTitle =
+	title.includes(siteMeta.shortName) || title.includes('NATURCHEM')
+		? title
+		: `${title} · ${siteMeta.shortName}`;
+---
+
+<!doctype html>
+<html lang="cs">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{fullTitle}</title>
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex, follow" />}
+		<link rel="canonical" href={canonicalURL} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:locale" content="cs_CZ" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+	</head>
+	<body>
+		<a class="skip-link visually-hidden" href="#main">Přejít na obsah</a>
+		<SiteHeader />
+		<main id="main" class="layout-main">
+			<slot />
+		</main>
+		<SiteFooter />
+	</body>
+</html>
+
+<style is:global>
+	.skip-link:focus {
+		position: fixed;
+		top: 0.75rem;
+		left: 0.75rem;
+		z-index: 9999;
+		width: auto;
+		height: auto;
+		padding: 0.5rem 1rem;
+		margin: 0;
+		overflow: visible;
+		clip: auto;
+		white-space: nowrap;
+		background: var(--color-accent);
+		color: #fff;
+		border-radius: 8px;
+	}
+</style>

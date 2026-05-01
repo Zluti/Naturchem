@@ -1,0 +1,265 @@
+---
+import { siteMeta, servicesNav } from '../content/site';
+
+const navServices = servicesNav.map((s) => ({
+	href: `/sluzby/${s.slug}`,
+	label: s.title,
+}));
+
+const navMain = [
+	{ href: '/', label: 'Úvod' },
+	{ href: '/sluzby', label: 'Služby' },
+	{ href: '/reference', label: 'Reference' },
+	{ href: '/dokumenty', label: 'Dokumenty' },
+	{ href: '/kontakt', label: 'Kontakt' },
+];
+---
+
+<header class="site-header">
+	<div class="container site-header__inner">
+		<a class="site-logo" href="/">
+			<span class="site-logo__name">{siteMeta.shortName}</span>
+			<span class="site-logo__suffix">{siteMeta.titleSuffix}</span>
+		</a>
+
+		<button
+			type="button"
+			class="nav-toggle"
+			aria-expanded="false"
+			aria-controls="site-nav"
+			data-nav-toggle
+		>
+			<span class="visually-hidden">Menu</span>
+			<span class="nav-toggle__bar"></span>
+			<span class="nav-toggle__bar"></span>
+			<span class="nav-toggle__bar"></span>
+		</button>
+
+		<nav id="site-nav" class="site-nav" aria-label="Hlavní navigace">
+			<ul class="site-nav__list">
+				{
+					navMain.map((item) => (
+						<li>
+							<a href={item.href} class="site-nav__link">
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+				<li class="site-nav__item--mega">
+					<details class="mega">
+						<summary class="mega__summary site-nav__link">Oblasti služeb</summary>
+						<ul class="mega__panel">
+							{navServices.map((s) => (
+								<li>
+									<a href={s.href}>{s.label}</a>
+								</li>
+							))}
+						</ul>
+					</details>
+				</li>
+			</ul>
+			<a class="btn btn--primary site-header__cta" href="/kontakt">Poptávka</a>
+		</nav>
+	</div>
+</header>
+
+<script>
+	const btn = document.querySelector('[data-nav-toggle]');
+	const nav = document.getElementById('site-nav');
+	if (btn && nav) {
+		btn.addEventListener('click', () => {
+			const open = nav.classList.toggle('site-nav--open');
+			btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+		});
+		nav.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => {
+				nav.classList.remove('site-nav--open');
+				btn.setAttribute('aria-expanded', 'false');
+			});
+		});
+	}
+</script>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: rgba(246, 248, 246, 0.92);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		min-height: 4rem;
+	}
+
+	.site-logo {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		text-decoration: none;
+		color: var(--color-text);
+		line-height: 1.15;
+	}
+
+	.site-logo__name {
+		font-weight: 800;
+		font-size: 1.15rem;
+		letter-spacing: 0.02em;
+	}
+
+	.site-logo__suffix {
+		font-size: 0.78rem;
+		color: var(--color-muted);
+		font-weight: 600;
+	}
+
+	.site-nav {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+	}
+
+	.site-nav__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.25rem 1rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.site-nav__link {
+		text-decoration: none;
+		font-weight: 600;
+		color: var(--color-text);
+		padding: 0.35rem 0;
+	}
+
+	.site-nav__link:hover {
+		color: var(--color-accent);
+	}
+
+	.site-header__cta {
+		white-space: nowrap;
+		font-size: 0.95rem;
+		padding: 0.5rem 1rem;
+	}
+
+	.nav-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+		margin-right: -0.5rem;
+	}
+
+	.nav-toggle__bar {
+		width: 1.5rem;
+		height: 2px;
+		background: var(--color-text);
+		border-radius: 2px;
+	}
+
+	.mega {
+		position: relative;
+	}
+
+	.mega__summary {
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.mega__summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.mega__panel {
+		position: absolute;
+		right: 0;
+		top: calc(100% + 0.35rem);
+		min-width: 280px;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow);
+		list-style: none;
+		margin: 0;
+		padding: 0.5rem 0;
+		z-index: 60;
+	}
+
+	.mega__panel a {
+		display: block;
+		padding: 0.5rem 1rem;
+		text-decoration: none;
+		font-weight: 500;
+		color: var(--color-text);
+	}
+
+	.mega__panel a:hover {
+		background: var(--color-accent-soft);
+		color: var(--color-accent-hover);
+	}
+
+	@media (max-width: 860px) {
+		.nav-toggle {
+			display: flex;
+		}
+
+		.site-nav {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 100%;
+			flex-direction: column;
+			align-items: stretch;
+			background: var(--color-surface);
+			border-bottom: 1px solid var(--color-border);
+			padding: 1rem;
+			display: none;
+		}
+
+		.site-nav--open {
+			display: flex;
+		}
+
+		.site-nav__list {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0;
+		}
+
+		.site-nav__link {
+			display: block;
+			padding: 0.65rem 0;
+			border-bottom: 1px solid var(--color-border);
+		}
+
+		.mega__panel {
+			position: static;
+			box-shadow: none;
+			border: none;
+			padding-left: 0;
+		}
+
+		.site-header__cta {
+			justify-content: center;
+			width: 100%;
+			margin-top: 0.5rem;
+		}
+	}
+</style>

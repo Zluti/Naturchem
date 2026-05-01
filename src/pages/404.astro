@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../content/site';
+
+const title = `Stránka nenalezena · ${siteMeta.shortName}`;
+---
+
+<BaseLayout
+	title={title}
+	description="Požadovaná stránka neexistuje. Vraťte se na úvod nebo použijte kontakt."
+	canonicalPath="/404"
+	noindex
+>
+	<section class="section container notfound">
+		<h1 class="page-title">Stránka nenalezena</h1>
+		<p class="page-lead">
+			Tuto adresu nemáme — zkuste úvodní stránku, přehled služeb nebo kontakt.
+		</p>
+		<div class="notfound__actions">
+			<a class="btn btn--primary" href="/">Úvod</a>
+			<a class="btn btn--ghost" href="/sluzby">Služby</a>
+			<a class="btn btn--ghost" href="/kontakt">Kontakt</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.page-title {
+		font-size: clamp(1.75rem, 3vw, 2.25rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.page-lead {
+		max-width: 46ch;
+		color: var(--color-muted);
+		font-size: 1.05rem;
+		margin: 0 0 1.5rem;
+		line-height: 1.55;
+	}
+
+	.notfound__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+	}
+</style>

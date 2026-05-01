@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+	siteMeta,
+	referenceHighlight,
+	referenceMore,
+	caseStudies,
+} from '../content/site';
+
+const title = `Reference · ${siteMeta.shortName}`;
+const description =
+	'Reference NATURCHEM: průmysl, energetika, doprava a veřejná správa. Ukázky typů spolupráce.';
+---
+
+<BaseLayout {title} {description} canonicalPath="/reference">
+	<section class="section container">
+		<h1 class="page-title">Reference</h1>
+		<p class="page-lead">
+			Dlouhodobě spolupracujeme s významnými podniky — od automotive přes energetiku až po
+			řešení hluku a životního prostředí u infrastruktury.
+		</p>
+
+		<h2 class="section-title section-title--sm">Vybraní partneři</h2>
+		<ul class="refs-grid">
+			{referenceHighlight.map((name) => <li class="surface-card refs-grid__item">{name}</li>)}
+		</ul>
+
+		<h2 class="section-title section-title--sm">Další spolupráce</h2>
+		<ul class="refs-list">
+			{referenceMore.map((name) => <li>{name}</li>)}
+		</ul>
+
+		<h2 class="section-title section-title--sm">Jak typicky pomáháme (anonymizované příklady)</h2>
+		<div class="cases">
+			{
+				caseStudies.map((c) => (
+					<article class="surface-card case-card">
+						<p class="case-card__sector">{c.sector}</p>
+						<p>
+							<strong>Situace:</strong> {c.problem}
+						</p>
+						<p>
+							<strong>Přístup:</strong> {c.outcome}
+						</p>
+					</article>
+				))
+			}
+		</div>
+
+		<p class="closing-cta">
+			<a class="btn btn--primary" href="/kontakt">Domluvit spolupráci</a>
+		</p>
+	</section>
+</BaseLayout>
+
+<style>
+	.page-title {
+		font-size: clamp(2rem, 3.5vw, 2.5rem);
+		margin: 0 0 0.75rem;
+	}
+
+	.page-lead {
+		max-width: 60ch;
+		color: var(--color-muted);
+		font-size: 1.1rem;
+		margin: 0 0 2.5rem;
+		line-height: 1.55;
+	}
+
+	.section-title--sm {
+		font-size: 1.35rem;
+		margin: 2rem 0 1rem;
+	}
+
+	.refs-grid {
+		list-style: none;
+		margin: 0 0 2rem;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 0.65rem;
+	}
+
+	.refs-grid__item {
+		font-weight: 600;
+		text-align: center;
+		padding: 0.85rem;
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.refs-list {
+		margin: 0 0 2rem;
+		padding-left: 1.2rem;
+		color: var(--color-muted);
+		line-height: 1.55;
+		column-count: 2;
+		column-gap: 2rem;
+	}
+
+	@media (max-width: 640px) {
+		.refs-list {
+			column-count: 1;
+		}
+	}
+
+	.cases {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1rem;
+	}
+
+	.case-card {
+		margin: 0;
+		font-size: 0.98rem;
+		color: var(--color-muted);
+		line-height: 1.5;
+	}
+
+	.case-card__sector {
+		margin: 0 0 0.5rem;
+		font-weight: 800;
+		color: var(--color-accent);
+		text-transform: uppercase;
+		font-size: 0.78rem;
+		letter-spacing: 0.06em;
+	}
+
+	.case-card p {
+		margin: 0 0 0.5rem;
+	}
+
+	.closing-cta {
+		margin: 2.5rem 0 0;
+	}
+</style>

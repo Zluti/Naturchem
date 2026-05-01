@@ -1,0 +1,3 @@
+{
+	"redirects": [{ "source": "/kontakt.php", "destination": "/kontakt", "permanent": true }]
+}

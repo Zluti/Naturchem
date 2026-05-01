@@ -1,0 +1,6 @@
+# Apache (volitelné): přesměrování starého kontaktu a vlastní 404 po nasazení `dist/` na hosting.
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^kontakt\.php$ /kontakt [R=301,L]
+</IfModule>
+ErrorDocument 404 /404.html
