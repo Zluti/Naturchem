@@ -1,6 +1,6 @@
 ---
 import IconSymbol from './IconSymbol.astro';
-import { bundled } from '../assets/bundled';
+import { siteMeta } from '../data/site';
 
 interface Props {
 	title: string;
@@ -30,7 +30,7 @@ const { title, lead, imageUrl, imageAlt, bullets, photoCredit } = Astro.props;
 				/>
 				<img
 					class="visual-band__pattern"
-					src={bundled.heroPattern}
+					src={siteMeta.heroPatternSrc}
 					alt=""
 					width="900"
 					height="700"

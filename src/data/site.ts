@@ -7,9 +7,13 @@ export const siteMeta = {
 	description:
 		'Autorizované studie, akreditovaná měření, prodej měřicí techniky, znalecká činnost a školení v oblasti životního prostředí. Působíme pro průmysl, dopravu a veřejný sektor.',
 	url: 'https://naturchem.cz',
+	/** Obrázky v `public/images/` — stabilní URL na jakémkoli hostingu (nezávislé na `_astro`). */
+	heroPhotoSrc: '/images/hero-photo.svg',
+	heroPatternSrc: '/images/hero-pattern.svg',
+	headerLogoSrc: '/images/naturchem-logo-official.svg',
 	heroPhotoAlt:
 		'Ilustrace průmyslového měření a ochrany ovzduší — vizuální styl Naturchem.',
-	/** Druhý vizuální blok na úvodní stránce (viz `bundled.bandPhoto`). */
+	homeBandPhotoSrc: '/images/band-photo.svg',
 	homeBandPhotoAlt:
 		'Ilustrace krajiny a obnovitelných zdrojů v kontextu životního prostředí.',
 	email: 'naturchem@naturchem.cz',
@@ -156,11 +160,18 @@ export const furtherServices = [
 
 /** Vybrané reference + lokální „logo“ (typografické znázornění názvu; nejsou to oficiální grafické znaky firem). */
 export const referenceLogoPartners = [
-	{ name: 'Škoda Auto, a.s.', logoKey: 'skoda' },
-	{ name: 'ČEZ, a.s.', logoKey: 'cez' },
-	{ name: 'České dráhy, a.s.', logoKey: 'cd' },
-	{ name: 'E.ON, a.s.', logoKey: 'eon' },
+	{ name: 'Škoda Auto, a.s.', logoSrc: '/images/references/skoda-auto.svg' },
+	{ name: 'ČEZ, a.s.', logoSrc: '/images/references/cez.svg' },
+	{ name: 'České dráhy, a.s.', logoSrc: '/images/references/ceske-drahy.svg' },
+	{ name: 'E.ON, a.s.', logoSrc: '/images/references/e-on.svg' },
 ] as const;
+
+/** Cover článků podle `coverKey` ve frontmatter. */
+export const articleCoverSrc = {
+	emise: '/images/clanky/cover-emise.svg',
+	hluk: '/images/clanky/cover-hluk.svg',
+	skoleni: '/images/clanky/cover-skoleni.svg',
+} as const;
 
 export const referenceMore = [
 	'STRABAG, a.s.',

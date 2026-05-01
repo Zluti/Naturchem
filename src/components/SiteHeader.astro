@@ -1,6 +1,5 @@
 ---
 import { siteMeta, servicesNav } from '../data/site';
-import { bundled } from '../assets/bundled';
 
 const navServices = servicesNav.map((s) => ({
 	href: `/sluzby/${s.slug}`,
@@ -26,7 +25,7 @@ const navMain = [
 		>
 			<img
 				class="site-logo__mark"
-				src={bundled.logoNaturchem}
+				src={siteMeta.headerLogoSrc}
 				alt=""
 				width="268"
 				height="46"

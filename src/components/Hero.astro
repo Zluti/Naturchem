@@ -1,6 +1,5 @@
 ---
 import { siteMeta } from '../data/site';
-import { bundled } from '../assets/bundled';
 
 interface Props {
 	title: string;
@@ -10,7 +9,7 @@ interface Props {
 
 const { title, subtitle, pills = [] } = Astro.props;
 
-const heroPhoto = bundled.heroPhoto;
+const heroPhoto = siteMeta.heroPhotoSrc;
 const heroAlt = siteMeta.heroPhotoAlt;
 ---
 
@@ -54,7 +53,7 @@ const heroAlt = siteMeta.heroPhotoAlt;
 				/>
 				<img
 					class="hero__pattern"
-					src={bundled.heroPattern}
+					src={siteMeta.heroPatternSrc}
 					alt=""
 					width="900"
 					height="700"

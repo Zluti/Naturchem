@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { bundled } from '../../assets/bundled';
-import { siteMeta } from '../../data/site';
+import { articleCoverSrc, siteMeta } from '../../data/site';
 
 const dateFmt = new Intl.DateTimeFormat('cs-CZ', {
 	year: 'numeric',
@@ -38,7 +37,7 @@ const description =
 								{post.data.coverKey && (
 									<div class="post-card__cover">
 										<img
-											src={bundled.covers[post.data.coverKey]}
+											src={articleCoverSrc[post.data.coverKey]}
 											alt={post.data.coverAlt ?? ''}
 											width="1200"
 											height="630"

@@ -6,6 +6,10 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://naturchem.cz',
+	build: {
+		// `_astro` některé hostingy / CDN špatně obsluhují; `assets` je bez podtržítek.
+		assets: 'assets',
+	},
 	integrations: [sitemap()],
 	vite: {
 		build: {
