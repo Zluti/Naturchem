@@ -1,12 +1,18 @@
 /** Firemní údaje a obsah webu — upravujte zde kontakty při změně. */
 
+/** Z `astro.config.mjs` (`site`) — na Vercelu odpoví nasazené URL, ne pevné naturchem.cz. */
+const siteUrl =
+	(typeof import.meta.env.SITE === 'string' && import.meta.env.SITE.length > 0
+		? import.meta.env.SITE
+		: 'http://localhost:4321') as string;
+
 export const siteMeta = {
 	name: 'NATURCHEM s. r. o.',
 	shortName: 'Naturchem',
 	titleSuffix: 'Emise, hluk, vibrace, EIA',
 	description:
 		'Autorizované studie, akreditovaná měření, prodej měřicí techniky, znalecká činnost a školení v oblasti životního prostředí. Působíme pro průmysl, dopravu a veřejný sektor.',
-	url: 'https://naturchem.cz',
+	url: siteUrl,
 	/** Obrázky v `public/images/` — stabilní URL na jakémkoli hostingu (nezávislé na `_astro`). */
 	heroPhotoSrc: '/images/hero-photo.svg',
 	heroPatternSrc: '/images/hero-pattern.svg',
@@ -23,6 +29,9 @@ export const siteMeta = {
 	orRejstrik:
 		'Společnost je zapsána v obchodním rejstříku Krajského soudu v Hradci Králové, sp. zn. C 22910.',
 } as const;
+
+/** Veřejný produkční web firmy (PDF dokumenty) — odděleně od URL této preview ukázky. */
+export const legacyPublicSiteUrl = 'https://naturchem.cz' as const;
 
 export const offices = [
 	{
@@ -194,35 +203,35 @@ export const referenceMore = [
 
 export type DocumentItem = { title: string; href: string };
 
-/** Odkazy na PDF na stávajícím hostingu — po nasazení lze přesunout do /public/documents/. */
+/** Odkazy na PDF na stávajícím veřejném webu — po nasazení lze přesunout do /public/documents/. */
 export const documents: DocumentItem[] = [
 	{
 		title: 'Akreditovaná laboratoř ČIA L 1599',
-		href: 'https://naturchem.cz/assets/documents/Osvedceni_s_prilohami.pdf',
+		href: `${legacyPublicSiteUrl}/assets/documents/Osvedceni_s_prilohami.pdf`,
 	},
 	{
 		title: 'Výpis z obchodního rejstříku',
-		href: 'https://naturchem.cz/assets/documents/V%C3%BDpis-z-obchodn%C3%ADho-rejst%C5%99%C3%ADku.pdf',
+		href: `${legacyPublicSiteUrl}/assets/documents/V%C3%BDpis-z-obchodn%C3%ADho-rejst%C5%99%C3%ADku.pdf`,
 	},
 	{
 		title: 'Živnostenský list',
-		href: 'https://naturchem.cz/assets/documents/ZL.pdf',
+		href: `${legacyPublicSiteUrl}/assets/documents/ZL.pdf`,
 	},
 	{
 		title: 'Autorizace EIA',
-		href: 'https://naturchem.cz/assets/documents/autorizaceEIA.PDF',
+		href: `${legacyPublicSiteUrl}/assets/documents/autorizaceEIA.PDF`,
 	},
 	{
 		title: 'Autorizace rozptylové studie',
-		href: 'https://naturchem.cz/assets/documents/RS%20do%202016.pdf',
+		href: `${legacyPublicSiteUrl}/assets/documents/RS%20do%202016.pdf`,
 	},
 	{
 		title: 'Autorizace ověřování emisí skleníkových plynů',
-		href: 'https://naturchem.cz/assets/documents/Autorizace-k-ov%C4%9B%C5%99ov%C3%A1n%C3%AD-emis%C3%AD-sklen%C3%ADkov%C3%BDch-plyn%C5%AF.pdf',
+		href: `${legacyPublicSiteUrl}/assets/documents/Autorizace-k-ov%C4%9B%C5%99ov%C3%A1n%C3%AD-emis%C3%AD-sklen%C3%ADkov%C3%BDch-plyn%C5%AF.pdf`,
 	},
 	{
 		title: 'Autorizace odborných posudků',
-		href: 'https://naturchem.cz/assets/documents/OP_new.PDF',
+		href: `${legacyPublicSiteUrl}/assets/documents/OP_new.PDF`,
 	},
 ];
 

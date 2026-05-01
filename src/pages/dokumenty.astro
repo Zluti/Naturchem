@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { siteMeta, documents } from '../data/site';
+import { documents, legacyPublicSiteUrl, siteMeta } from '../data/site';
 
 const title = `Dokumenty a akreditace · ${siteMeta.shortName}`;
 const description =
@@ -13,7 +13,8 @@ const description =
 		<p class="page-lead">
 			Níže najdete dokumenty ve formátu PDF. Po nasazení nového webu můžete soubory zkopírovat
 			do hostingu projektu — zatím odkazují na stávající cesty na{' '}
-			<a href={siteMeta.url}>naturchem.cz</a>.
+			<a href={legacyPublicSiteUrl} rel="noopener noreferrer">naturchem.cz</a> (veřejný web firmy,
+			odděleně od této ukázky).
 		</p>
 
 		<div class="doc-grid">
