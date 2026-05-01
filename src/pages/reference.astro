@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { bundled } from '../assets/bundled';
 import {
 	siteMeta,
 	referenceLogoPartners,
@@ -25,7 +26,7 @@ const description =
 			{
 				referenceLogoPartners.map((p) => (
 					<li class="surface-card refs-logo-grid__card">
-						<img src={p.logoSrc} alt="" width="280" height="100" loading="lazy" decoding="async" />
+						<img src={bundled.refs[p.logoKey]} alt="" width="280" height="100" loading="lazy" decoding="async" />
 						<span class="refs-logo-grid__caption">{p.name}</span>
 					</li>
 				))

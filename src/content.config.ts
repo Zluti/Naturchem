@@ -10,7 +10,7 @@ const clanky = defineCollection({
 		updatedDate: z.coerce.date().optional(),
 		tags: z.array(z.string()).optional().default([]),
 		draft: z.boolean().optional().default(false),
-		coverSrc: z.string().optional(),
+		coverKey: z.enum(['emise', 'hluk', 'skoleni']).optional(),
 		coverAlt: z.string().optional(),
 	}),
 });

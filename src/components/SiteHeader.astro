@@ -1,5 +1,6 @@
 ---
 import { siteMeta, servicesNav } from '../data/site';
+import { bundled } from '../assets/bundled';
 
 const navServices = servicesNav.map((s) => ({
 	href: `/sluzby/${s.slug}`,
@@ -18,8 +19,19 @@ const navMain = [
 
 <header class="site-header">
 	<div class="container site-header__inner">
-		<a class="site-logo" href="/">
-			<span class="site-logo__name">{siteMeta.shortName}</span>
+		<a
+			class="site-logo"
+			href="/"
+			aria-label={`${siteMeta.shortName}, ${siteMeta.titleSuffix}`}
+		>
+			<img
+				class="site-logo__mark"
+				src={bundled.logoNaturchem}
+				alt=""
+				width="248"
+				height="43"
+				decoding="async"
+			/>
 			<span class="site-logo__suffix">{siteMeta.titleSuffix}</span>
 		</a>
 
@@ -103,22 +115,27 @@ const navMain = [
 	.site-logo {
 		display: flex;
 		flex-direction: column;
-		gap: 0;
+		align-items: flex-start;
+		gap: 0.15rem;
 		text-decoration: none;
 		color: var(--color-text);
 		line-height: 1.15;
 	}
 
-	.site-logo__name {
-		font-weight: 800;
-		font-size: 1.15rem;
-		letter-spacing: 0.02em;
+	.site-logo__mark {
+		display: block;
+		height: auto;
+		width: min(248px, 52vw);
+		max-height: 2.35rem;
+		object-fit: contain;
+		object-position: left center;
 	}
 
 	.site-logo__suffix {
 		font-size: 0.78rem;
 		color: var(--color-muted);
 		font-weight: 600;
+		padding-left: 0.05rem;
 	}
 
 	.site-nav {

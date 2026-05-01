@@ -7,12 +7,9 @@ export const siteMeta = {
 	description:
 		'Autorizované studie, akreditovaná měření, prodej měřicí techniky, znalecká činnost a školení v oblasti životního prostředí. Působíme pro průmysl, dopravu a veřejný sektor.',
 	url: 'https://naturchem.cz',
-	/** Hero obrázek (lokální soubor — na hostingu funguje spolehlivěji než hotlink z CDN). */
-	heroPhotoSrc: '/images/hero-photo.svg',
 	heroPhotoAlt:
 		'Ilustrace průmyslového měření a ochrany ovzduší — vizuální styl Naturchem.',
-	/** Druhý vizuální blok na úvodní stránce. */
-	homeBandPhotoSrc: '/images/band-photo.svg',
+	/** Druhý vizuální blok na úvodní stránce (viz `bundled.bandPhoto`). */
 	homeBandPhotoAlt:
 		'Ilustrace krajiny a obnovitelných zdrojů v kontextu životního prostředí.',
 	email: 'naturchem@naturchem.cz',
@@ -159,10 +156,10 @@ export const furtherServices = [
 
 /** Vybrané reference + lokální „logo“ (typografické znázornění názvu; nejsou to oficiální grafické znaky firem). */
 export const referenceLogoPartners = [
-	{ name: 'Škoda Auto, a.s.', logoSrc: '/images/references/skoda-auto.svg' },
-	{ name: 'ČEZ, a.s.', logoSrc: '/images/references/cez.svg' },
-	{ name: 'České dráhy, a.s.', logoSrc: '/images/references/ceske-drahy.svg' },
-	{ name: 'E.ON, a.s.', logoSrc: '/images/references/e-on.svg' },
+	{ name: 'Škoda Auto, a.s.', logoKey: 'skoda' },
+	{ name: 'ČEZ, a.s.', logoKey: 'cez' },
+	{ name: 'České dráhy, a.s.', logoKey: 'cd' },
+	{ name: 'E.ON, a.s.', logoKey: 'eon' },
 ] as const;
 
 export const referenceMore = [

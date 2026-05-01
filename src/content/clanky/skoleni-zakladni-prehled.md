@@ -4,7 +4,7 @@ description: Co si z školení typicky odnáší pracovníci výroby, logistiky 
 pubDate: 2026-05-01
 tags: ['Školení', 'Legislativa']
 draft: false
-coverSrc: /images/clanky/cover-skoleni.svg
+coverKey: skoleni
 coverAlt: Grafický úvodní motiv — školení legislativy pro firmy
 ---
 

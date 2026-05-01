@@ -4,7 +4,7 @@ description: Praktické kroky před příjezdem měřicí skupiny — od domluvy
 pubDate: 2026-04-02
 tags: ['Měření emisí', 'Provoz']
 draft: false
-coverSrc: /images/clanky/cover-emise.svg
+coverKey: emise
 coverAlt: Grafický úvodní motiv — měření emisí a příprava provozu
 ---
 

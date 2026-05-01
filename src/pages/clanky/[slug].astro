@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { bundled } from '../../assets/bundled';
 import { siteMeta } from '../../data/site';
 
 export async function getStaticPaths() {
@@ -27,6 +28,7 @@ const canonicalPath = `/clanky/${post.id}`;
 
 const title = `${post.data.title} · Články · ${siteMeta.shortName}`;
 const description = post.data.description;
+const coverAsset = post.data.coverKey ? bundled.covers[post.data.coverKey] : undefined;
 ---
 
 <BaseLayout {title} {description} canonicalPath={canonicalPath}>
@@ -64,10 +66,10 @@ const description = post.data.description;
 		</header>
 
 		{
-			post.data.coverSrc && (
+			coverAsset && (
 				<div class="article-cover">
 					<img
-						src={post.data.coverSrc}
+						src={coverAsset}
 						alt={post.data.coverAlt ?? ''}
 						width="1200"
 						height="630"
