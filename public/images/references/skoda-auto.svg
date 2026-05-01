@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="100" viewBox="0 0 280 100" role="img" aria-label="`koda Auto">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="100" viewBox="0 0 280 100" role="img" aria-label="Skoda Auto">
   <rect width="280" height="100" rx="10" fill="#fff" stroke="#dfe7df"/>
-  <text x="140" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="800" fill="#1a2318">`KODA AUTO</text>
+  <text x="140" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="800" fill="#1a2318">SKODA AUTO</text>
   <text x="140" y="78" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4a574c">a.s.</text>
 </svg>
