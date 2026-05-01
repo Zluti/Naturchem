@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 46" fill="none" aria-hidden="true">
+	<!-- Viz oficiální wordmark: šestiúhelník zasahuje do „N“, NATUR modrá / CHEM antracit -->
+	<path
+		d="M 11 13 L 20.53 18.5 L 20.53 29.5 L 11 35 L 1.47 29.5 L 1.47 18.5 Z"
+		stroke="#2d2e32"
+		stroke-width="1.75"
+		stroke-linejoin="round"
+		fill="none"
+	/>
+	<text
+		x="18"
+		y="31"
+		font-family="Segoe UI, Inter, Roboto, system-ui, sans-serif"
+		font-size="21"
+		font-weight="800"
+		letter-spacing="0.03em"
+	>
+		<tspan fill="#3b4998">NATUR</tspan><tspan fill="#2d2e32">CHEM</tspan>
+	</text>
+</svg>
