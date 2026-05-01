@@ -7,15 +7,14 @@ export const siteMeta = {
 	description:
 		'Autorizované studie, akreditovaná měření, prodej měřicí techniky, znalecká činnost a školení v oblasti životního prostředí. Působíme pro průmysl, dopravu a veřejný sektor.',
 	url: 'https://naturchem.cz',
-	/** Hero fotografie (Unsplash) — v prohlížeči; lze nahradit vlastním souborem v /public/images/. */
-	heroPhotoUrl:
-		'https://images.unsplash.com/photo-1581092160562-40aa08e66837?auto=format&fit=crop&w=1400&q=82',
+	/** Hero obrázek (lokální soubor — na hostingu funguje spolehlivěji než hotlink z CDN). */
+	heroPhotoSrc: '/images/hero-photo.svg',
 	heroPhotoAlt:
-		'Pracovník v bezpečnostní helmě při práci v průmyslovém prostředí — kontext měření a provozu.',
+		'Ilustrace průmyslového měření a ochrany ovzduší — vizuální styl Naturchem.',
 	/** Druhý vizuální blok na úvodní stránce. */
-	homeBandPhotoUrl:
-		'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1400&q=82',
-	homeBandPhotoAlt: 'Krajina a obnovitelné zdroje — souvislost ochrany životního prostředí s průmyslem.',
+	homeBandPhotoSrc: '/images/band-photo.svg',
+	homeBandPhotoAlt:
+		'Ilustrace krajiny a obnovitelných zdrojů v kontextu životního prostředí.',
 	email: 'naturchem@naturchem.cz',
 	phones: ['+420 603 216 983', '+420 774 100 570'] as const,
 	ico: '27504379',
@@ -158,11 +157,12 @@ export const furtherServices = [
 	'Prodej produktů společnosti Delta OHM S.r.l.',
 ] as const;
 
-export const referenceHighlight = [
-	'Škoda Auto, a.s.',
-	'ČEZ, a.s.',
-	'České dráhy, a.s.',
-	'E.ON, a.s.',
+/** Vybrané reference + lokální „logo“ (typografické znázornění názvu; nejsou to oficiální grafické znaky firem). */
+export const referenceLogoPartners = [
+	{ name: 'Škoda Auto, a.s.', logoSrc: '/images/references/skoda-auto.svg' },
+	{ name: 'ČEZ, a.s.', logoSrc: '/images/references/cez.svg' },
+	{ name: 'České dráhy, a.s.', logoSrc: '/images/references/ceske-drahy.svg' },
+	{ name: 'E.ON, a.s.', logoSrc: '/images/references/e-on.svg' },
 ] as const;
 
 export const referenceMore = [

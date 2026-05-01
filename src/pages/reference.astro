@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
 	siteMeta,
-	referenceHighlight,
+	referenceLogoPartners,
 	referenceMore,
 	caseStudies,
 } from '../data/site';
@@ -21,9 +21,20 @@ const description =
 		</p>
 
 		<h2 class="section-title section-title--sm">Vybraní partneři</h2>
-		<ul class="refs-grid">
-			{referenceHighlight.map((name) => <li class="surface-card refs-grid__item">{name}</li>)}
+		<ul class="refs-logo-grid">
+			{
+				referenceLogoPartners.map((p) => (
+					<li class="surface-card refs-logo-grid__card">
+						<img src={p.logoSrc} alt="" width="280" height="100" loading="lazy" decoding="async" />
+						<span class="refs-logo-grid__caption">{p.name}</span>
+					</li>
+				))
+			}
 		</ul>
+		<p class="refs-disclaimer">
+			Jedná se o stylizované textové znázornění názvů společností pro přehled na webu — nikoli oficiální
+			grafické logotypy držitelů ochranných známek.
+		</p>
 
 		<h2 class="section-title section-title--sm">Další spolupráce</h2>
 		<ul class="refs-list">
@@ -48,7 +59,7 @@ const description =
 		</div>
 
 		<p class="closing-cta">
-			<a class="btn btn--primary" href="/kontakt">Domluvit spolupráci</a>
+			<a class="btn btn--primary" href="/kontakt#form-poptavka">Domluvit spolupráci</a>
 		</p>
 	</section>
 </BaseLayout>
@@ -72,21 +83,44 @@ const description =
 		margin: 2rem 0 1rem;
 	}
 
-	.refs-grid {
+	.refs-logo-grid {
 		list-style: none;
-		margin: 0 0 2rem;
+		margin: 0 0 0.75rem;
 		padding: 0;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		gap: 0.65rem;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 0.85rem;
 	}
 
-	.refs-grid__item {
-		font-weight: 600;
-		text-align: center;
-		padding: 0.85rem;
+	.refs-logo-grid__card {
 		margin: 0;
-		font-size: 0.95rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.65rem;
+		padding: 1.1rem 1rem 1.2rem;
+		text-align: center;
+	}
+
+	.refs-logo-grid__card img {
+		width: 100%;
+		max-width: 280px;
+		height: auto;
+		object-fit: contain;
+	}
+
+	.refs-logo-grid__caption {
+		font-size: 0.84rem;
+		font-weight: 700;
+		color: var(--color-muted);
+	}
+
+	.refs-disclaimer {
+		margin: 0 0 2rem;
+		font-size: 0.86rem;
+		color: var(--color-muted);
+		line-height: 1.5;
+		max-width: 70ch;
 	}
 
 	.refs-list {

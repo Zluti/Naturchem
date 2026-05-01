@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1050" viewBox="0 0 1400 1050" fill="none" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">Industrial measurement and air protection illustration</title>
+  <desc id="hero-desc">Stylized plant, stack and gauge in Naturchem green tones.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8f5e9"/>
+      <stop offset="1" stop-color="#c8e6c9"/>
+    </linearGradient>
+    <linearGradient id="facade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#81c784"/>
+      <stop offset="1" stop-color="#43a047"/>
+    </linearGradient>
+    <linearGradient id="gauge" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2d6a4f"/>
+      <stop offset="1" stop-color="#40916c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1050" fill="url(#sky)"/>
+  <ellipse cx="700" cy="980" rx="720" ry="140" fill="#a5d6a7" opacity="0.35"/>
+  <path fill="#95d5b2" opacity="0.45" d="M0 620 Q420 520 840 580 T1400 540 V1050H0Z"/>
+  <rect x="180" y="380" width="720" height="420" rx="18" fill="url(#facade)" opacity="0.92"/>
+  <rect x="220" y="430" width="140" height="95" rx="6" fill="#1b4332" opacity="0.35"/>
+  <rect x="390" y="430" width="140" height="95" rx="6" fill="#1b4332" opacity="0.28"/>
+  <rect x="560" y="430" width="140" height="95" rx="6" fill="#1b4332" opacity="0.32"/>
+  <rect x="730" y="430" width="130" height="95" rx="6" fill="#1b4332" opacity="0.25"/>
+  <rect x="260" y="560" width="520" height="180" rx="10" fill="#1b4332" opacity="0.22"/>
+  <rect x="980" y="320" width="90" height="380" rx="12" fill="#558b2f" opacity="0.85"/>
+  <ellipse cx="1025" cy="260" rx="55" ry="28" fill="#ffffff" opacity="0.55"/>
+  <path stroke="#ffffff" stroke-width="14" stroke-linecap="round" opacity="0.45" d="M900 680 Q1040 560 1180 470"/>
+  <circle cx="1060" cy="460" r="120" fill="#ffffff" opacity="0.95"/>
+  <circle cx="1060" cy="460" r="92" stroke="url(#gauge)" stroke-width="18" fill="none"/>
+  <path stroke="#1b4332" stroke-width="10" stroke-linecap="round" d="M1060 460l52-62"/>
+  <circle cx="1060" cy="460" r="14" fill="#1b4332"/>
+  <text x="1060" y="615" text-anchor="middle" fill="#1b4332" font-family="system-ui,sans-serif" font-size="26" font-weight="700">Measurement</text>
+  <text x="540" y="320" text-anchor="middle" fill="#1b4332" font-family="system-ui,sans-serif" font-size="44" font-weight="800" opacity="0.9">Environment</text>
+</svg>

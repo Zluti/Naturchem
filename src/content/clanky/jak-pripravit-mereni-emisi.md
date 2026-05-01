@@ -4,6 +4,8 @@ description: Praktické kroky před příjezdem měřicí skupiny — od domluvy
 pubDate: 2026-04-02
 tags: ['Měření emisí', 'Provoz']
 draft: false
+coverSrc: /images/clanky/cover-emise.svg
+coverAlt: Grafický úvodní motiv — měření emisí a příprava provozu
 ---
 
 Měření emisí má být **reprezentativní** vůči běžnému provozu a zároveň **bezpečné** pro všechny zúčastněné. Dobrá příprava šetří čas, opakování měření i stres při kontrole ze strany úřadu.

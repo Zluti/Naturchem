@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none" role="img" aria-hidden="true">
+  <rect width="1200" height="630" fill="#f1f8f4"/>
+  <rect x="700" y="80" width="420" height="470" rx="20" fill="#fff" stroke="#b7e4c7" stroke-width="3"/>
+  <path stroke="#2d6a4f" stroke-width="10" stroke-linecap="round" d="M760 180h300M760 260h240M760 340h280"/>
+  <circle cx="260" cy="315" r="160" fill="#d8f3dc"/>
+  <path fill="#2d6a4f" d="M220 260h80v140h-80z"/><circle cx="260" cy="220" r="48" fill="#40916c"/>
+  <text x="80" y="560" fill="#1b4332" font-family="system-ui,sans-serif" font-size="38" font-weight="800">`kolení pro firmy</text>
+</svg>

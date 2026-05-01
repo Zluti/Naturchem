@@ -4,6 +4,8 @@ description: Proč řešit hluk a vibrace včas — stavební řízení, souseds
 pubDate: 2026-04-18
 tags: ['Hluk', 'EIA', 'Stavby']
 draft: false
+coverSrc: /images/clanky/cover-hluk.svg
+coverAlt: Grafický úvodní motiv — hluková studie a projektová příprava
 ---
 
 Hluková problematika často přichází na řadu až ve chvíli, kdy už je projekt „domalovaný“. Přitom právě **brzké posouzení** může ušetřit přepracování dokumentace i konflikty s okolím.

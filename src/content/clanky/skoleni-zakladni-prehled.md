@@ -4,6 +4,8 @@ description: Co si z školení typicky odnáší pracovníci výroby, logistiky 
 pubDate: 2026-05-01
 tags: ['Školení', 'Legislativa']
 draft: false
+coverSrc: /images/clanky/cover-skoleni.svg
+coverAlt: Grafický úvodní motiv — školení legislativy pro firmy
 ---
 
 Legislativa v oblasti chemických látek a ochrany ovzduší se mění — a s ní i **evidence, hlášení a odpovědnost konkrétních rolí** v podniku. Krátké cílené školení pomůže sjednotit výklad a snížit riziko pochybení při kontrole.

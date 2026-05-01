@@ -9,7 +9,7 @@ interface Props {
 
 const { title, subtitle, pills = [] } = Astro.props;
 
-const heroPhoto = siteMeta.heroPhotoUrl;
+const heroPhoto = siteMeta.heroPhotoSrc;
 const heroAlt = siteMeta.heroPhotoAlt;
 ---
 
@@ -29,7 +29,7 @@ const heroAlt = siteMeta.heroPhotoAlt;
 				)
 			}
 			<div class="hero__actions">
-				<a class="btn btn--primary" href="/kontakt">Nezávazná poptávka</a>
+				<a class="btn btn--primary" href="/kontakt#form-poptavka">Nezávazná poptávka</a>
 				<a class="btn btn--ghost hero__btn-light" href="tel:+420603216983">Zavolat</a>
 				<a class="btn btn--ghost hero__btn-light" href="/dokumenty">Ověřitelné dokumenty</a>
 			</div>
@@ -46,7 +46,7 @@ const heroAlt = siteMeta.heroPhotoAlt;
 					src={heroPhoto}
 					alt={heroAlt}
 					width="1400"
-					height="933"
+					height="1050"
 					loading="eager"
 					decoding="async"
 					fetchpriority="high"
@@ -61,7 +61,9 @@ const heroAlt = siteMeta.heroPhotoAlt;
 					decoding="async"
 				/>
 			</div>
-			<p class="hero__credit">Ilustrační fotografie — doporučujeme vlastní snímky z měření či provozu.</p>
+			<p class="hero__credit">
+				Vektorová ilustrace nahraná lokálně — bez závislosti na externích obrázcích (vhodné i za firemním proxy).
+			</p>
 		</div>
 	</div>
 </section>
@@ -185,6 +187,7 @@ const heroAlt = siteMeta.heroPhotoAlt;
 		height: auto;
 		aspect-ratio: 4 / 3;
 		object-fit: cover;
+		object-position: center;
 	}
 
 	.hero__pattern {

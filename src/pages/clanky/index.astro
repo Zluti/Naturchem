@@ -34,19 +34,33 @@ const description =
 					{posts.map((post) => (
 						<li>
 							<a class="post-card surface-card" href={`/clanky/${post.id}`}>
-								<time class="post-card__date" datetime={post.data.pubDate.toISOString()}>
-									{dateFmt.format(post.data.pubDate)}
-								</time>
-								<h2 class="post-card__title">{post.data.title}</h2>
-								<p class="post-card__desc">{post.data.description}</p>
-								{post.data.tags.length > 0 && (
-									<ul class="post-card__tags">
-										{post.data.tags.map((t) => (
-											<li>{t}</li>
-										))}
-									</ul>
+								{post.data.coverSrc && (
+									<div class="post-card__cover">
+										<img
+											src={post.data.coverSrc}
+											alt={post.data.coverAlt ?? ''}
+											width="1200"
+											height="630"
+											loading="lazy"
+											decoding="async"
+										/>
+									</div>
 								)}
-								<span class="post-card__more">Číst článek →</span>
+								<div class="post-card__inner">
+									<time class="post-card__date" datetime={post.data.pubDate.toISOString()}>
+										{dateFmt.format(post.data.pubDate)}
+									</time>
+									<h2 class="post-card__title">{post.data.title}</h2>
+									<p class="post-card__desc">{post.data.description}</p>
+									{post.data.tags.length > 0 && (
+										<ul class="post-card__tags">
+											{post.data.tags.map((t) => (
+												<li>{t}</li>
+											))}
+										</ul>
+									)}
+									<span class="post-card__more">Číst článek →</span>
+								</div>
 							</a>
 						</li>
 					))}
@@ -97,12 +111,35 @@ const description =
 	.post-card {
 		display: flex;
 		flex-direction: column;
-		gap: 0.45rem;
+		gap: 0;
 		height: 100%;
 		text-decoration: none;
 		color: inherit;
 		transition: transform 0.12s ease, box-shadow 0.12s ease;
 		border-top: 3px solid var(--color-accent-soft);
+		overflow: hidden;
+		padding: 0;
+	}
+
+	.post-card__cover {
+		overflow: hidden;
+		background: var(--color-accent-soft);
+	}
+
+	.post-card__cover img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1200 / 630;
+		object-fit: cover;
+	}
+
+	.post-card__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		padding: 1rem 1.25rem 1.25rem;
+		flex: 1;
 	}
 
 	.post-card:hover {

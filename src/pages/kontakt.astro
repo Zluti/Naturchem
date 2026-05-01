@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactForm from '../components/ContactForm.astro';
+import InquiryForm from '../components/InquiryForm.astro';
 import { siteMeta, offices, team } from '../data/site';
 
 const title = `Kontakt · ${siteMeta.shortName}`;
@@ -34,10 +34,10 @@ const structuredData = {
 			ozveme se s dalšími kroky.
 		</p>
 
-		<div class="contact__grid">
+		<div id="form-poptavka" class="contact__grid">
 			<div class="contact__column">
 				<h2 class="contact__h2">Poptávka</h2>
-				<ContactForm />
+				<InquiryForm formId="form-poptavka-fields" />
 
 				<h2 id="privacy-processing" class="contact__h2 contact__h2--spaced">
 					Zpracování osobních údajů
